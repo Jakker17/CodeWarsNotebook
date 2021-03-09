@@ -8,9 +8,51 @@ public class Main {
 
         //System.out.println(overTheRoad(23633656673L, 310027696726L));
         //System.out.println(getMiddle("A"));
-        sortArray(new int[]{  5, 3, 1, 8, 0 });
+        //sortArray(new int[]{  5, 3, 1, 8, 0 });
+        //System.out.println(dontGiveMeFive(1,9));
+        //System.out.println(countBits(10));
+
+        //System.out.println(bouncingBall(30.0, 1, 1.5));
+        System.out.println(createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
+    }
+
+    public static String createPhoneNumber(int[] numbers) {
+        return "("+numbers[0]+numbers[1]+numbers[2]+") "+numbers[3]+numbers[4]+numbers[5]+"-"+numbers[6]+numbers[7]+numbers[8]+numbers[9];
+        //return String.format("(%d%d%d) %d%d%d-%d%d%d%d",numbers[0],numbers[1],numbers[2],numbers[3],numbers[4],numbers[5],numbers[6],numbers[7],numbers[8],numbers[9]);
+    }
+
+    public static int bouncingBall(double h, double bounce, double window) {
+        if (h<=0)return -1;
+        else if (bounce<=0||bounce>=1)return -1;
+        else if (window>=h)return -1;
+        int counter=0;
+        double bh=h;
+        do {
+            counter++;
+            bh = bh*bounce;
+            if (bh>=window)counter++;
+        }while (bh>=window);
+        return counter;
+    }
 
 
+    public static int countBits(int n){
+        String binary = Integer.toBinaryString(n);
+        int counter=0;
+        for (int i= 0; i<binary.length();i++){
+            if (binary.substring(i,i+1).contains("1"))
+            counter++;
+        }
+        return counter;
+    }
+
+    public static int dontGiveMeFive(int start, int end)
+    {
+        int counter=0;
+        for (int i=start;i<=end;i++){
+            if (!String.valueOf(i).contains("5"))counter++;
+        }
+        return counter;
     }
 
 
