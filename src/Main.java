@@ -13,7 +13,44 @@ public class Main {
         //System.out.println(countBits(10));
 
         //System.out.println(bouncingBall(30.0, 1, 1.5));
-        System.out.println(createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
+        //System.out.println(createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
+
+        System.out.println(validate("891"));
+
+
+
+
+    }
+
+    public static boolean validate(String number){
+        int[] array = new int[number.length()];
+        for (int i =0;i<number.length();i++){
+            array[i]=Integer.parseInt(number.substring(i,i+1));
+        }
+
+        int counter = 0;
+
+        if (array.length%2==0){
+            counter=0;
+        }
+        else{counter=1;}
+
+        for (int i = counter;i<array.length;i+=2){
+            array[i]*=2;
+        }
+
+        int sum=0;
+        for (int i =0;i<array.length;i++)
+        {
+
+            if (array[i]>9){
+                array[i]-=9;
+            }
+            sum+=array[i];
+        }
+
+        if (sum%10==0 )return true;
+        return false;
     }
 
     public static String createPhoneNumber(int[] numbers) {
