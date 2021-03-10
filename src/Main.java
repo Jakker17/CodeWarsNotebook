@@ -14,12 +14,46 @@ public class Main {
 
         //System.out.println(bouncingBall(30.0, 1, 1.5));
         //System.out.println(createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
+        //System.out.println(validate("891"));
 
-        System.out.println(validate("891"));
+        //System.out.println(Arrays.toString(wave(" gap ")));
 
 
 
 
+
+    }
+
+    public static String[] wave(String str) {
+        if (str.equals(""))return new String[] {};
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        for (int i =0; i<str.length();i++){
+            if (str.charAt(i) != ' ')
+
+            {
+                if (i==0)
+                {
+                    arrayList.add(str.substring(0,1).toUpperCase()+str.substring(1));
+                }
+                else
+                    {
+                        arrayList.add(str.substring(0,i)+str.substring(i,i+1).toUpperCase()+str.substring(i+1));
+                    }
+            }
+
+        }
+
+        return arrayList.toArray(new String[0]);
+    }
+
+
+    public static int getNumberOfSpaces(String str){
+        int numberOfspaces=0;
+        for (int i =0;i<str.length();i++){
+            if (str.charAt(i) == ' ')numberOfspaces++;
+        }
+        return numberOfspaces;
     }
 
     public static boolean validate(String number){
