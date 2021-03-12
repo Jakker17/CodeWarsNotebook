@@ -17,12 +17,98 @@ public class Main {
         //System.out.println(validate("891"));
 
         //System.out.println(Arrays.toString(wave(" gap ")));
+        //System.out.println(solution(0));
+        //System.out.println(greedy(new int[]{1,1,1,3,1}));
+        //System.out.println(greedy(new int[]{5,5,5,3,5}));
 
-
-
-
+        //System.out.println(greedy(new int[]{2,4,4,5,4}));
+        System.out.println(find(new int[]{Integer.MAX_VALUE, 0, 1}));
 
     }
+
+   public static int find(int[] integers){
+        if (isOdd(integers)){
+            for (Integer i:integers) {
+                if (i%2==0)return i;
+            }
+        }
+        else
+        {
+            for (Integer i:integers) {
+                if (i%2!=0)return i;
+            }
+        }
+        return 0;
+    }
+
+    public static boolean isOdd(int[] integers){
+        int odds=0;
+        int evens=0;
+
+        for (int i =0;i<3;i++){
+            if (integers[i]%2==0)evens++;
+            else odds++;
+        }
+
+        if (odds>evens)return true;
+        else return false;
+    }
+
+
+    public static int greedy(int[] dice){
+        int score = 0;
+
+        int tmp=numberOfOccurrence(dice,1);
+        if (tmp>2){
+            score+=1000;
+        tmp-=3;
+        tmp-=tmp;
+        }
+        score+=tmp*100;
+
+        tmp=numberOfOccurrence(dice,5);
+        if (tmp>2){
+            score+=500;
+            tmp-=3;
+            score+=tmp*50;
+            tmp-=tmp;
+        }
+        score+=tmp*50;
+
+        if (numberOfOccurrence(dice,2)>=3) score+=200;
+        if (numberOfOccurrence(dice,3)>=3) score+=300;
+        if (numberOfOccurrence(dice,4)>=3) score+=400;
+        if (numberOfOccurrence(dice,6)>=3) score+=600;
+
+        return score;
+    }
+
+    public static int numberOfOccurrence(int[] dice, int numberSearched){
+        int counter =0;
+        for (Integer i:dice) {
+            if (i==numberSearched)counter++;
+        }
+        return counter;
+    }
+
+    public static int solution(int number) {
+        if (number<0)return 0;
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int i=0;i<number;i++){
+            if (i%3==0 || i%5==0){
+                arrayList.add(i);
+            }
+        }
+        int counter=0;
+
+        for (Integer i:arrayList) {
+            counter+=i;
+        }
+
+
+        return counter;
+    }
+
 
     public static String[] wave(String str) {
         if (str.equals(""))return new String[] {};
